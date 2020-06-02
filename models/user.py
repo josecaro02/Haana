@@ -7,7 +7,7 @@ class Users(me.Document):
     created_at = me.DateTimeField(default=datetime.now())
     name = me.StringField(required=True)
     type = me.StringField()
-    email = me.StringField()
+    email = me.EmailField()
     passwd = me.StringField()
     phone = me.StringField()
 

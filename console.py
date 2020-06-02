@@ -4,6 +4,7 @@ import cmd
 import models.mongo_setup as mongo_setup
 import services.data_service as svc
 import infraestructure.state as state
+import json
 
 
 class HAANACommand(cmd.Cmd):
@@ -36,6 +37,40 @@ class HAANACommand(cmd.Cmd):
         else:
             state.active_account = svc.create_account(name, email, passwd)
             print(f"Created new account with id {state.active_account.id}.")
+
+    def do_log(self, line):
+        """ Logg in to the app """
+        data = line.split()
+        email = data[0]
+        account = svc.find_account(email)
+        if not account:
+            print(f"Could not fin account with email {email}")
+            return
+        state.active_account = account
+        print("Logged in Succesfully.")
+
+    def do_make_review(self, line):
+        """ Reviews make by the user for the store
+            this function receives a JSON"""
+        if not state.active_account:
+            print("You must login first to register a review.")
+        else:
+            line1 = json.loads(line)
+            for key, value in line1.items():
+                if (key == "store_id"):
+                    store_id = value
+                if (key == "description"):
+                    description = value
+                if (key == "score"):
+                    score = value
+            user_id = state.active_account.id
+            svc.write_review(store_id, user_id, description, score)
+            print("Review saved correctly")
+
+    def do_list_reviews(self, line):
+        """ Method to show the reviews of a store """
+        reviews = svc.show_reviews(line)
+        print(reviews)
 
 
 if __name__ == '__main__':
