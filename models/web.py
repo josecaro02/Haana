@@ -2,7 +2,7 @@
 import mongoengine as me
 
 
-class WeB(me.EmbeddedDocument):
+class Web(me.EmbeddedDocument):
     logo = me.StringField()
     color = me.StringField()
     background = me.StringField()

@@ -1,5 +1,6 @@
 from models.user import Users
 from models.reviews import Reviews
+from models.stores import Stores
 
 
 def create_account(name: str, email: str, passwd: str) -> Users:
@@ -33,6 +34,19 @@ def write_review(store_id: str, user_id: str,
 def show_reviews(store_id) -> Reviews:
 
     query = Reviews.objects(store_id=store_id)
+    dic = []
+    for i in query:
+        temp = {}
+        for k in i:
+            if temp[k]:
+                temp[k] = i[k]
+        dic.append(temp)
+    return dic
+
+
+def show_stores(type_store: str, location: str) -> Stores:
+
+    query = Stores.objects(location__department=location)
     dic = []
     for i in query:
         temp = {}

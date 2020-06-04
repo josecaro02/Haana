@@ -68,9 +68,21 @@ class HAANACommand(cmd.Cmd):
             print("Review saved correctly")
 
     def do_list_reviews(self, line):
-        """ Method to show the reviews of a store """
+        """ Recives one argument: store_id """
         reviews = svc.show_reviews(line)
         print(reviews)
+
+    def do_list_store(self, line):
+        """ Recives two arguments type of store
+            and the location"""
+        line1 = json.loads(line)
+        for key, value in line1.items():
+            if (key == "type"):
+                type_store = value
+            if (key == "location"):
+                location = value
+        store = svc.show_stores(type_store, location)
+        print(store)
 
 
 if __name__ == '__main__':
