@@ -47,10 +47,11 @@ def show_reviews(store_id) -> Reviews:
 def show_stores(type_store: str, location: str) -> Stores:
 
     query = Stores.objects(location__department=location)
-    dic = []
-    for i in query:
-        temp = {}
-        for k in i:
-            temp[k] = i[k]
-        dic.append(temp)
-    return dic
+    if query:
+        dic = []
+        for i in query:
+            temp = {}
+            for k in i:
+                temp[k] = i[k]
+            dic.append(temp)
+        return dic
