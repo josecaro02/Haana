@@ -84,6 +84,49 @@ class HAANACommand(cmd.Cmd):
         store = svc.show_stores(type_store, location)
         print(store)
 
+    def do_add_product(self, line):
+        """ Add a producto to an store, recieving an JSON
+        with an store _id and producto info (name, value,
+        description and img_link) """
+        line1 = json.loads(line)
+        for key, value in line1.items():
+            if (key == "_id"):
+                _id = value
+            if (key == "name"):
+                name = value
+            if (key == "value"):
+                value = value
+            if (key == "description"):
+                description = value
+            if (key == "img_link"):
+                img_link = value
+        new_product = svc.add_product(_id, name, value, description, img_link)
+        print(new_product)
 
+
+    def do_create_store(self, line):
+        line1 = json.loads(line)
+        for key, value in line1.items():
+            if (key == 'location'):
+                location = value
+            if (key == 'name'):
+                name = value
+            if (key == 'phone'):
+                phone = value
+            if (key == 'type'):
+                type_ = value
+            if (key == 'sub_type'):
+                subtype = value
+            if (key == 'owner_id'):
+                owner_id = value
+            if (key == 'web_info'):
+                web_info = value
+        new_store = svc.create_store(name, phone, type_, subtype
+                                     , owner_id)
+        print(new_store)
+
+    def do_update_prod(self, line):
+        svc.update_product()
+        svc.create_product()
 if __name__ == '__main__':
     HAANACommand().cmdloop()
