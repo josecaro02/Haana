@@ -21,7 +21,7 @@ cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 @app.errorhandler(404)
 def not_fount(error):
     """ 404 error """
-    return make_response(jsonify())
+    return make_response(jsonify({'status': "Not found"}), 404)
 
 
 
