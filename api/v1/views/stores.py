@@ -20,20 +20,19 @@ def get_stores():
     for one_store in stores_list:
         one_store['_id'] = str(one_store['_id'])
         store.append(one_store)
-    print("hello")
     return make_response(jsonify(store), 200)
 
 @app_views.route('/stores/<store_id>', methods=['GET'])
-def get_one_store(store_id):
-    store = mongo.db.stores.find_one({"_id": ObjectId(store_id)})
+def get_store(store_id):
+    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
         abort(404)
     store['_id'] = str(store['_id'])
     return make_response(jsonify(store), 200)
 
 @app_views.route('/stores/<store_id>/products', methods=['GET'])
-def get_one_store_products(store_id):
-    store = mongo.db.stores.find_one({"_id": ObjectId(store_id)})
+def get_store_products(store_id):
+    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
         abort(404)
     return make_response(jsonify(store['products']), 200)
