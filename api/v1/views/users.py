@@ -70,6 +70,10 @@ def update_user(user_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     if not user:
         abort(404)
+    if 'email' in data:
+        data_email = data['email']
+        if created_user(data_email) and user['email'] != data_email:
+            abort(409, description="Email already used")
     for key, item in data.items():
         mongo.db.users.update_one({"_id": ObjectId(user_id)},
                                        {'$set': {key: item}})
