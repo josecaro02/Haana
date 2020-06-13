@@ -35,19 +35,6 @@ def get_user(user_id):
     user['_id'] = str(user['_id'])
     return make_response(jsonify(user), 200)
 
-@app_views.route('/users/<user_id>/stores', methods=['GET'])
-def get_one_user_stores(user_id):
-    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    if not user or user['type'] != 'owner':
-        abort(404)
-    stores_db = mongo.db.stores.find()
-    stores_user = []
-    for store in stores_db:
-        if str(user['_id']) == store['owner_id']:
-            store['_id'] = str(store['_id'])
-            stores_user.append(store)
-    return make_response(jsonify(stores_user), 200)
-
 @app_views.route('/users', methods=['POST'])
 def post_user():
     data = request.get_json()
