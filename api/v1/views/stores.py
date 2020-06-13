@@ -37,15 +37,19 @@ def get_store_products(store_id):
         abort(404)
     return make_response(jsonify(store['products']), 200)
 
-@app_views.route('/stores', methods=['POST'])
-def post_store():
+@app_views.route('/users/<user_id>/stores', methods=['POST'])
+def post_store(user_id):
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    if not user or user['type'] != 'owner':
+        abort(404)
     data = request.get_json()
     if not data:
-        abort(400, description="Not a JSON")
+        abort(400, description='Not a JSON')
+    data['owner_id'] = ObjectId(user_id)
     if not validate_store(data):
-        abort(400, description="Bad JSON: Some required field is missing")
-    store_id = str(mongo.db.stores.insert(data))
-    store = mongo.db.stores.find_one({"_id": ObjectId(store_id)})
+        abort(400, description='Bad JSON: Some required field is missing')
+    store_id = mongo.db.stores.insert(data)
+    store = mongo.db.stores.find_one({'_id': store_id})
     store['_id'] = str(store['_id'])
     return make_response(jsonify(store), 200)
 
