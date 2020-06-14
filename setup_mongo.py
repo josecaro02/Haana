@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 import pymongo
+from datetime import datetime
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 db = myclient["co_haana"]
 store = db["stores"]
 test_store = {
-    "_id": "1A",
-    "created_at": "2020-05-31 1:23:04",
+    "created_at": datetime.now(),
     "name": "Sushijana",
     "phone": "3777777",
     "type": "restaurant",
@@ -30,9 +30,9 @@ test_store = {
         "background": "FF5736"}
 }
 store.insert_one(test_store)
+
 user = db["users"]
 test_user = {
-    "_id": "1",
     "name": "Jose Caro",
     "type": "Owner",
     "email": "1278@holbertonschool.com",
@@ -40,9 +40,9 @@ test_user = {
     "phone": "3203443504"
 }
 user.insert_one(test_user)
+
 review = db["reviews"]
 test_review = {
-    "_id": "2B",
     "store_id": "1A",
     "user_id": "1",
     "description":"Excelente servicio comida fresca aunque un poco lenta la preparacion pero eso asegura la frescura del producto",
