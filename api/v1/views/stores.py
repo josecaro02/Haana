@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Stores API """
+''' Stores API '''
 
 from api.v1.app import mongo
 from api.v1.views import app_views
@@ -19,6 +19,7 @@ def get_stores():
     store = []
     for one_store in stores_list:
         one_store['_id'] = str(one_store['_id'])
+        one_store['owner_id'] = str(one_store['owner_id'])
         store.append(one_store)
     return make_response(jsonify(store), 200)
 
@@ -28,17 +29,19 @@ def get_store(store_id):
     if not store:
         abort(404)
     store['_id'] = str(store['_id'])
+    store['owner_id'] = str(store['owner_id'])
     return make_response(jsonify(store), 200)
 
 @app_views.route('/users/<user_id>/stores', methods=['GET'])
 def get_stores_by_user(user_id):
-    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
     if not user or user['type'] != 'owner':
         abort(404)
-    stores_db = mongo.db.stores.find({"owner_id": user['_id']})
+    stores_db = mongo.db.stores.find({'owner_id': user['_id']})
     stores_user = []
     for store in stores_db:
         store['_id'] = str(store['_id'])
+        store['owner_id'] = str(store['owner_id'])
         stores_user.append(store)
     return make_response(jsonify(stores_user), 200)
 
@@ -51,7 +54,7 @@ def get_store_products(store_id):
 
 @app_views.route('/users/<user_id>/stores', methods=['POST'])
 def post_store(user_id):
-    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
     if not user or user['type'] != 'owner':
         abort(404)
     data = request.get_json()
@@ -63,28 +66,31 @@ def post_store(user_id):
     store_id = mongo.db.stores.insert(data)
     store = mongo.db.stores.find_one({'_id': store_id})
     store['_id'] = str(store['_id'])
+    store['owner_id'] = str(store['owner_id'])
     return make_response(jsonify(store), 200)
 
 @app_views.route('/stores/<store_id>', methods=['PUT'])
 def update_store(store_id):
     data = request.get_json()
     if not data:
-        abort(400, description="Not a JSON")
-    store = mongo.db.stores.find_one({"_id": ObjectId(store_id)})
+        abort(400, description='Not a JSON')
+    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
         abort(404)
     for key, item in data.items():
-        mongo.db.stores.update_one({"_id": ObjectId(store_id)},
+        mongo.db.stores.update_one({'_id': ObjectId(store_id)},
                                        {'$set': {key: item}})
-    store = mongo.db.stores.find_one({"_id": ObjectId(store_id)})
+    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
     store['_id'] = str(store['_id'])
+    store['owner_id'] = str(store['owner_id'])
     return make_response(jsonify(store), 200)
 
 @app_views.route('/stores/<store_id>', methods=['DELETE'])
 def delete_store(store_id):
-    store = mongo.db.stores.find_one({"_id": ObjectId(store_id)})
+    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
         abort(404)
     mongo.db.stores.remove({'_id': ObjectId(store_id)})
     store['_id'] = str(store['_id'])
+    store['owner_id'] = str(store['owner_id'])
     return make_response(jsonify(store), 200)
