@@ -69,6 +69,10 @@ def post_review(store_id):
         abort(404)
     if user['_id'] == store['owner_id']:
         abort(409, description='Owner cannot make a review of its own restaurant')
+    user_review_of_store = mongo.db.reviews.find_one({'user_id': user['_id'],
+                                                      'store_id': store['_id']})
+    if user_review_of_store:
+        abort(409, description='User already made a review of this resaturant')
     data['created_at'] = datetime.isoformat(datetime.utcnow())
     review_id = mongo.db.reviews.insert(data)
     review = mongo.db.reviews.find_one({"_id": review_id})
@@ -85,6 +89,8 @@ def update_review(review_id):
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     if not review:
         abort(404)
+    if 'user_id' in data or 'store_id' in data:
+        abort(404, "Cannot change user or store")
     for key, item in data.items():
         mongo.db.reviews.update_one({"_id": ObjectId(review_id)},
                                        {'$set': {key: item}})
