@@ -63,6 +63,7 @@ def post_store(user_id):
     data['owner_id'] = ObjectId(user_id)
     if not validate_store(data):
         abort(400, description='Bad JSON: Some required field is missing')
+    data['created_at'] = datetime.isoformat(datetime.utcnow())
     store_id = mongo.db.stores.insert(data)
     store = mongo.db.stores.find_one({'_id': store_id})
     store['_id'] = str(store['_id'])
