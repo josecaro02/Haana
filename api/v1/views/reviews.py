@@ -32,7 +32,7 @@ def get_reviews_by_store(store_id):
 @app_views.route('/users/<user_id>/reviews', methods=['GET'])
 def get_reviews_by_user(user_id):
     user = mongo.db.users.find({'_id': ObjectId(user_id)})
-    if not store:
+    if not user:
         abort(404)
     reviews_list = mongo.db.reviews.find({'user_id': ObjectId(user_id)})
     review = []
@@ -90,7 +90,7 @@ def update_review(review_id):
     if not review:
         abort(404)
     if 'user_id' in data or 'store_id' in data:
-        abort(404, "Cannot change user or store")
+        abort(409, "Cannot change user or store")
     for key, item in data.items():
         mongo.db.reviews.update_one({"_id": ObjectId(review_id)},
                                        {'$set': {key: item}})
