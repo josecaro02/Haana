@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 ''' Stores API '''
 
-from api.v1.app import mongo
 from api.v1.views import app_views
 from bson.objectid import ObjectId
 from flask import abort, jsonify, make_response, request
+from models import mongo_db
 
 def validate_store(data_store):
     required = ['name', 'phone', 'type', 'sub_type', 'schedule', 'location', 'owner_id']
@@ -15,7 +15,7 @@ def validate_store(data_store):
 
 @app_views.route('/stores', methods=['GET'])
 def get_stores():
-    stores_list = mongo.db.stores.find()
+    stores_list = mongo_db.stores.find()
     store = []
     for one_store in stores_list:
         one_store['_id'] = str(one_store['_id'])
@@ -25,7 +25,7 @@ def get_stores():
 
 @app_views.route('/stores/<store_id>', methods=['GET'])
 def get_store(store_id):
-    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
         abort(404)
     store['_id'] = str(store['_id'])
@@ -34,10 +34,10 @@ def get_store(store_id):
 
 @app_views.route('/users/<user_id>/stores', methods=['GET'])
 def get_stores_by_user(user_id):
-    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    user = mongo_db.users.find_one({'_id': ObjectId(user_id)})
     if not user or user['type'] != 'owner':
         abort(404)
-    stores_db = mongo.db.stores.find({'owner_id': user['_id']})
+    stores_db = mongo_db.stores.find({'owner_id': user['_id']})
     stores_user = []
     for store in stores_db:
         store['_id'] = str(store['_id'])
@@ -47,14 +47,14 @@ def get_stores_by_user(user_id):
 
 @app_views.route('/stores/<store_id>/products', methods=['GET'])
 def get_store_products(store_id):
-    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
         abort(404)
     return make_response(jsonify(store['products']), 200)
 
 @app_views.route('/users/<user_id>/stores', methods=['POST'])
 def post_store(user_id):
-    user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    user = mongo_db.users.find_one({'_id': ObjectId(user_id)})
     if not user or user['type'] != 'owner':
         abort(404)
     data = request.get_json()
@@ -64,8 +64,8 @@ def post_store(user_id):
     if not validate_store(data):
         abort(400, description='Bad JSON: Some required field is missing')
     data['created_at'] = datetime.isoformat(datetime.utcnow())
-    store_id = mongo.db.stores.insert(data)
-    store = mongo.db.stores.find_one({'_id': store_id})
+    store_id = mongo_db.stores.insert(data)
+    store = mongo_db.stores.find_one({'_id': store_id})
     store['_id'] = str(store['_id'])
     store['owner_id'] = str(store['owner_id'])
     return make_response(jsonify(store), 200)
@@ -75,23 +75,23 @@ def update_store(store_id):
     data = request.get_json()
     if not data:
         abort(400, description='Not a JSON')
-    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
         abort(404)
     for key, item in data.items():
-        mongo.db.stores.update_one({'_id': ObjectId(store_id)},
+        mongo_db.stores.update_one({'_id': ObjectId(store_id)},
                                        {'$set': {key: item}})
-    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
     store['_id'] = str(store['_id'])
     store['owner_id'] = str(store['owner_id'])
     return make_response(jsonify(store), 200)
 
 @app_views.route('/stores/<store_id>', methods=['DELETE'])
 def delete_store(store_id):
-    store = mongo.db.stores.find_one({'_id': ObjectId(store_id)})
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
         abort(404)
-    mongo.db.stores.remove({'_id': ObjectId(store_id)})
+    mongo_db.stores.remove({'_id': ObjectId(store_id)})
     store['_id'] = str(store['_id'])
     store['owner_id'] = str(store['owner_id'])
     return make_response(jsonify(store), 200)
