@@ -45,23 +45,23 @@ def get_stores_by_user(user_id):
         stores_user.append(store)
     return make_response(jsonify(stores_user), 200)
 
-@app_views.route('/stores/<store_id>/products', methods=['GET'])
-def get_store_products(store_id):
-    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
-    if not store:
-        abort(404)
-    return make_response(jsonify(store['products']), 200)
-
 @app_views.route('/location/<city>', methods=['GET'])
 def get_store_by_city(city):
     city = city.lower()
-    stores_list = mongo.db.stores.find({'location': {'city': city}})
+    stores_list = mongo_db.stores.find({'location': {'city': city}})
     store = []
     for one_store in stores_list:
         one_store['_id'] = str(one_store['_id'])
         one_store['owner_id'] = str(one_store['owner_id'])
         store.append(one_store)
     return make_response(jsonify(store), 200)
+
+@app_views.route('/stores/<store_id>/products', methods=['GET'])
+def get_store_products(store_id):
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
+    if not store:
+        abort(404)
+    return make_response(jsonify(store['products']), 200)
 
 @app_views.route('/users/<user_id>/stores', methods=['POST'])
 def post_store(user_id):
