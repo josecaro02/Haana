@@ -91,11 +91,43 @@ def update_store(store_id):
         abort(404)
     for key, item in data.items():
         mongo_db.stores.update_one({'_id': ObjectId(store_id)},
-                                       {'$set': {key: item}})
+                                   {'$set': {key: item}})
     store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
     store['_id'] = str(store['_id'])
     store['owner_id'] = str(store['owner_id'])
     return make_response(jsonify(store), 200)
+
+@app_views.route('/stores/<store_id>/products', methods=['POST'])
+def add_store_products(store_id):
+    data = request.get_json()
+    if not data:
+        abort(400, description='Not a JSON')
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
+    if not store:
+        abort(404)
+    final_products = store["products"] + data
+    mongo_db.stores.update_one({'_id': ObjectId(store_id)},
+                               {'$set': {"products": final_products}})
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
+    return make_response(jsonify(store["products"]), 200)
+
+@app_views.route('/stores/<store_id>/products', methods=['DELETE'])
+def delete_store_products(store_id):
+    data = request.get_json()
+    if not data:
+        abort(400, description='Not a JSON')
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
+    if not store:
+        abort(404)
+    products = store["products"]
+    for product in products:
+        for product_to_delete in data:
+            if product["name"] == product_to_delete["name"]:
+                products.remove(product)
+    mongo_db.stores.update_one({'_id': ObjectId(store_id)},
+                               {'$set': {"products": products}})
+    store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
+    return make_response(jsonify(store["products"]), 200)
 
 @app_views.route('/stores/<store_id>', methods=['DELETE'])
 def delete_store(store_id):
