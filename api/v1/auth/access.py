@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 ''' Authentication module '''
 
+from api.v1.app import bcrypt
 from api.v1.auth import app_auth
 from bson.objectid import ObjectId
 from flask import abort, jsonify, make_response, request
@@ -14,9 +15,8 @@ def user_login():
     if not ('email' in data and 'passwd' in data):
         abort(400, description="Not enough information")
     user = mongo_db.users.find_one({'email': data["email"]})
-    if user and user['passwd'] == data['passwd']:
+    if user and bcrypt.check_password_hash(user['passwd'], data['passwd']):
         info = {'status': 'login succesful'}
         return make_response(jsonify(info), 200)
     else:
         abort(403, description="Invalid user or password")
-
