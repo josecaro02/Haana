@@ -1,0 +1,30 @@
+.store_img {
+
+    height: 100px;
+    margin: auto;
+}
+
+.store_img img {
+    max-height: 100%;
+    width: auto;
+    max-width: 100%;
+
+}
+
+.card-header {
+    text-align: center;
+    font-weight: 500;
+    color: #f78b17;
+}
+
+.button_store {
+    margin-left: auto;
+}
+
+.modal-header {
+    background-color: #f78b17;
+}
+
+.modal-title{
+    color: white;
+}
