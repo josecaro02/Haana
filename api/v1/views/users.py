@@ -3,6 +3,7 @@
 
 from api.v1.app import bcrypt
 from api.v1.views import app_views
+from api.v1.auth.access import *
 from bson.objectid import ObjectId
 from flask import abort, jsonify, make_response, request
 from models import mongo_db
@@ -54,6 +55,7 @@ def post_user():
     return make_response(jsonify(user), 200)
 
 @app_views.route('/users/<user_id>', methods=['PUT'])
+@login_required
 def update_user(user_id):
     data = request.get_json()
     if not data:
@@ -76,6 +78,7 @@ def update_user(user_id):
     return make_response(jsonify(user), 200)
 
 @app_views.route('/users/<user_id>', methods=['DELETE'])
+@login_required
 def delete_user(user_id):
     user = mongo_db.users.find_one({'_id': ObjectId(user_id)})
     if not user:
