@@ -1,9 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import {
+  BrowserRouter as Router,
+  Route
+} from "react-router-dom";
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+import './index.css';
+import OneStore from './components/OneStore';
+import Home from './components/Home'
+
+const routing = (
+  <Router>
+    <div>
+      <Route path="/" component={Home} />
+      <Route path="/store" component={OneStore} />
+    </div>   
+  </Router> )
+ReactDOM.render(routing, document.getElementById('root'))
