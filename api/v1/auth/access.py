@@ -48,19 +48,19 @@ def login_required(f):
     def decorated_function(*args, **kwargs):
         auth_token = get_token()
         try:
-            jwt.decode(auth_token, 'haana')
+            payload = jwt.decode(auth_token, 'haana')
         except jwt.ExpiredSignatureError:
             abort(401, descripton="Signature expired")
         except jwt.InvalidTokenError:
             abort(401, description="Invalid token")
+        if f.__name__ == 'get_user_info':
+            payload.pop('iat')
+            payload.pop('exp')
+            return make_response(jsonify(payload))
         return f(*args, **kwargs)
     return decorated_function
 
 @app_auth.route('/user')
 @login_required
 def get_user_info():
-    auth_token = get_token()
-    payload = jwt.decode(auth_token, 'haana')
-    payload.pop('iat')
-    payload.pop('exp')
-    return make_response(jsonify(payload))
+    pass
