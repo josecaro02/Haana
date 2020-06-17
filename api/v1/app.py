@@ -4,12 +4,14 @@
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from api.v1.views import app_views
+from api.v1.auth import app_auth
 import os
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 app.register_blueprint(app_views)
+app.register_blueprint(app_auth)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 @app.errorhandler(404)
