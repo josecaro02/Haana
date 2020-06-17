@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Stores API """
 
+from api.v1.auth.access import login_required
 from api.v1.views import app_views
 from bson.objectid import ObjectId
 from datetime import datetime
@@ -30,6 +31,7 @@ def get_reviews_by_store(store_id):
     return make_response(jsonify(review), 200)
 
 @app_views.route('/users/<user_id>/reviews', methods=['GET'])
+@login_required
 def get_reviews_by_user(user_id):
     user = mongo_db.users.find({'_id': ObjectId(user_id)})
     if not user:
@@ -54,6 +56,7 @@ def get_review(review_id):
     return make_response(jsonify(review), 200)
 
 @app_views.route('/stores/<store_id>/reviews', methods=['POST'])
+@login_required
 def post_review(store_id):
     store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
@@ -82,6 +85,7 @@ def post_review(store_id):
     return make_response(jsonify(review), 200)
 
 @app_views.route('/reviews/<review_id>', methods=['PUT'])
+@login_required
 def update_review(review_id):
     data = request.get_json()
     if not data:
@@ -101,6 +105,7 @@ def update_review(review_id):
     return make_response(jsonify(review), 200)
 
 @app_views.route('/reviews/<review_id>', methods=['DELETE'])
+@login_required
 def delete_review(review_id):
     review = mongo_db.reviews.find_one({"_id": ObjectId(review_id)})
     if not review:
