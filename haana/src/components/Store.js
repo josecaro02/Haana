@@ -33,7 +33,7 @@ const Store = (props) => {
                 {description}
               </p>
               <React.Fragment>
-              <div className="col-12 row">
+              <div className="col-12 row h-100">
                 {products.map(product => (
                   <Product
                     key={product.name} 
@@ -52,8 +52,8 @@ const Store = (props) => {
 
     
     return (
-      <div className="container col-md-4">
-        <div className="card">
+      <div className="container col-sm-6 col-md-6 col-12 col-lg-4">
+        <div className="card h-100">
             <div className="card-head">
                 <div className="product-detail">
                     <h4>{name.toUpperCase()}</h4>
@@ -66,43 +66,43 @@ const Store = (props) => {
                      className="product-img"/>
             </div>
               <div class="product-desc">
-                <span class="product-title">
+              <span class="product-caption">
+                Calificaci&oacute;n
+                <span class="product-rating">
+                {Parser(stars_fill.repeat(score_store))}
+                {Parser(stars_empty.repeat(6 - score_store))}
+              </span>
+              </span>
+                  <span class="product-title">
                   <b>Especialistas en:</b>
                   <span class="badge">
                     {sub_type}
                   </span>
-                  <span class="badge">
-                    {sub_type}
-                  </span>
-                  <span class="badge">
-                    {sub_type}
-                  </span>
-                  <span class="badge">
-                    {sub_type}
-                  </span>
-                  <span class="badge">
-                    {sub_type}
-                  </span>
-
-              </span>
-              <span class="product-caption">
-                Saz&oacute;n Stars
-              </span>
-              <span class="product-rating">
-                {Parser(stars_fill.repeat(score_store))}
-                {Parser(stars_empty.repeat(6 - score_store))}
               </span>
             </div>
             <div class="product-properties">
               <span class="product-size">
                     <h4>{description}<br></br><br></br></h4>
               </span>
-              <a class="product-price" href={"https://api.whatsapp.com/send?phone=+57" + phone} target="_blank">
-                      <img border="0"
-                      src="https://icons.iconarchive.com/icons/dtafalonso/android-l/256/WhatsApp-icon.png" 
-                      width="50px" height="50px"></img>
-                </a>
+              <div className="phone">
+                  <span>Telefono: {phone} </span>
+                  <a class="product-price" href={"https://api.whatsapp.com/send?phone=+57" + phone} target="_blank">
+                        <img border="0" alt=""
+                        src="https://icons.iconarchive.com/icons/dtafalonso/android-l/256/WhatsApp-icon.png" 
+                        width="30px" height="30px"></img>
+                  </a>
+              </div>
             </div>
+            <div className="button_store block" >
+                  <Button block variant="primary" onClick={() => setModalShow(true)}>
+                      Ver productos de {name}
+                  </Button>
+                </div>
+                <MyVerticallyCenteredModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                />
+
           </div>
         </div>
       </div>  

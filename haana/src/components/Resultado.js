@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Store from './Store';
-import './../styles/resultado.css';
 
 class Resultado extends Component {
 

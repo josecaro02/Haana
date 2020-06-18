@@ -14,11 +14,12 @@
 .card-header {
     text-align: center;
     font-weight: 500;
-    color: #f78b17;
+    color: #c77f0c;
 }
 
 .button_store {
     margin-left: auto;
+    bottom: 0px;
 }
 
 .modal-header {

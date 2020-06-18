@@ -5,6 +5,7 @@
 }
 
 .store_img img {
+    margin-top:15px;
     max-height: 100%;
     width: auto;
     max-width: 100%;
