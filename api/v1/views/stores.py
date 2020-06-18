@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 ''' Stores API '''
 
+from api.v1.auth.access import login_required
 from api.v1.views import app_views
 from bson.objectid import ObjectId
 from flask import abort, jsonify, make_response, request
@@ -33,6 +34,7 @@ def get_store(store_id):
     return make_response(jsonify(store), 200)
 
 @app_views.route('/users/<user_id>/stores', methods=['GET'])
+@login_required
 def get_stores_by_user(user_id):
     user = mongo_db.users.find_one({'_id': ObjectId(user_id)})
     if not user or user['type'] != 'owner':
@@ -64,6 +66,7 @@ def get_store_products(store_id):
     return make_response(jsonify(store['products']), 200)
 
 @app_views.route('/users/<user_id>/stores', methods=['POST'])
+@login_required
 def post_store(user_id):
     user = mongo_db.users.find_one({'_id': ObjectId(user_id)})
     if not user or user['type'] != 'owner':
@@ -82,6 +85,7 @@ def post_store(user_id):
     return make_response(jsonify(store), 200)
 
 @app_views.route('/stores/<store_id>', methods=['PUT'])
+@login_required
 def update_store(store_id):
     data = request.get_json()
     if not data:
@@ -98,6 +102,7 @@ def update_store(store_id):
     return make_response(jsonify(store), 200)
 
 @app_views.route('/stores/<store_id>/products', methods=['POST'])
+@login_required
 def add_store_products(store_id):
     data = request.get_json()
     if not data:
@@ -112,6 +117,7 @@ def add_store_products(store_id):
     return make_response(jsonify(store["products"]), 200)
 
 @app_views.route('/stores/<store_id>/products', methods=['DELETE'])
+@login_required
 def delete_store_products(store_id):
     data = request.get_json()
     if not data:
@@ -130,6 +136,7 @@ def delete_store_products(store_id):
     return make_response(jsonify(store["products"]), 200)
 
 @app_views.route('/stores/<store_id>', methods=['DELETE'])
+@login_required
 def delete_store(store_id):
     store = mongo_db.stores.find_one({'_id': ObjectId(store_id)})
     if not store:
