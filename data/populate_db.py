@@ -47,6 +47,7 @@ def insert_stores(stores_file, products_file):
 				store['created_at'] = datetime.isoformat(datetime.utcnow())
 				store['location'] = {'city': store.pop('city').lower()}
 				store['web_info'] = {'logo': store['web_info']}
+				store['tags'] = store['tags'].split(';')
 				store['products'] = list(filter(lambda prod: prod['store'] == store['name'], products))
 				db.stores.insert_one(store)
 				line += 1

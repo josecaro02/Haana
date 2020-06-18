@@ -1,15 +1,15 @@
-name,phone,type,tags,schedule,city,owner,web_info
-Pecaditos,312065564,restaurant,papas,M,Chia,manuel.g@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Veggie Go,301600164,restaurant,vegetariana,M,Chia,sofia.m@hotmail.com,https://imgur.com/eIQJnFk.jpg
-New York Burgers,301327918,restaurant,hamburguesas,M,Chia,manuel.g@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Pipi Cucu,306270038,restaurant,postres,M,Chia,sofia.m@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Bovinos Steak,313277365,restaurant,carnes,M,Duitama,manuel.g@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Casa Sushi,309191755,restaurant,sushi,M,Duitama,sofia.m@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Mr Romano,301300434,restaurant,pasta,M,Duitama,manuel.g@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Recetas de mi tierra,312332470,restaurant,colombiana,M,Duitama,sofia.m@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Almuerzos Don Jose,325464918,restaurant,casera,M,Duitama,manuel.g@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Mexicanos,323290691,restaurant,mexicana,M,Duitama,sofia.m@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Helados Pacha,314944419,restaurant,helados,M,Fusagasuga,manuel.g@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Papas locas,313888899,restaurant,papas,M,Fusagasuga,sofia.m@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Alitas y mas,315262265,restaurant,alitas,M,Fusagasuga,manuel.g@hotmail.com,https://imgur.com/eIQJnFk.jpg
-Pizzahood,320458632,restaurant,pizza,M,Fusagasuga,sofia.m@hotmail.com,https://imgur.com/eIQJnFk.jpg
+name,phone,type,tags,schedule,city,owner,web_info,description
+Pecaditos,312065564,restaurant,papas;alas bbq,M,Chia,manuel.g@hotmail.com,https://imgur.com/asWX1LV.jpg,Comidas sencillas perfectas para acompañar tus onces o meriendas. Perfectas para reuniones pequeñas en compañia de la familia y amigos cercanos
+Veggie Go,301600164,restaurant,vegetariana,M,Chia,sofia.m@hotmail.com,https://imgur.com/Pm5T2yJ.jpg,"La mejor comida vegana para acompañar tus ocasiones especiales, ofreemos servicios a domicilios para eventos. Manejo de comida rapida vegana"
+New York Burgers,301327918,restaurant,hamburguesas,M,Chia,manuel.g@hotmail.com,https://imgur.com/QeBNegZ.jpg,Las mas ricas hamburguesas de Chia al alcance de tu mano! Tenemos gran variedad de opciones para niños y adultos
+Pipi Cucu,306270038,restaurant,postres;tortas, ,Chia,sofia.m@hotmail.com,https://imgur.com/FCmv65J.jpg,¿Quieres probar los mejores postres de la ciudad? En Pipi Cucu tenemos gran variedad de postres y tortas para acompañar las reuniones de tu familia y pecar de manera deliciosa
+Bovinos Steak,313277365,restaurant,carnes,M,Duitama,manuel.g@hotmail.com,https://imgur.com/ELBhpJS.jpg,"Ofrece una amplia carta de cortes de carnes de res y de cerdo altísima calidad, ensaladas con un excelente acompañamiento tal como chorizo, arepa, morcillas y más."
+Casa Sushi,309191755,restaurant,sushi;comida japonesa,M,Duitama,sofia.m@hotmail.com,https://imgur.com/FGOl6YB.jpg,Los mejores sushis de Duitama con toque colombiana traidos a tu mesa de la mano de los mejores cocineros
+Mr Romano,301300434,restaurant,pasta;lasagna;pizzas,M,Duitama,manuel.g@hotmail.com,https://imgur.com/4AkSFrK.jpg,"Pastas y sazón italiano para todos los gustos! Tenemos pastas, lasagnas, pizza frita y más opciones para que disfrutes con tu familia y amigos"
+Receta Tipica,312332470,restaurant,colombiana,M,Duitama,sofia.m@hotmail.com,https://imgur.com/m6GGTl4.jpg,"La mejor comida Colombiana en tu mesa. Manejamos la cocina variada de Colombia desde del Cauca hasta la Guajira. Mondogos, Ajiacos y hasta Cocidos Boyacenses!"
+Bendito almuerzo,325464918,restaurant,casera,M,Duitama,manuel.g@hotmail.com,https://imgur.com/BVm8rjl.jpg,Comida casera tus eventos. Todos los días manajemos un menu variado para que tengas más opciones para disfrutar. Almuerzos ejecutivos y especiales
+Antojitos Mexicanos,323290691,restaurant,mexicana;tacos;burritos,M,Duitama,sofia.m@hotmail.com,https://imgur.com/ReIosie.jpg,Comida mexicana para todos los gustos. Cocinamos con los mejores ingredientes para que tu experiencia sea la mejor y tu paladar se acerque a los placeres culinarios que nos brinda la cultura mexicana 
+Helados Pacha,314944419,restaurant,helados;postres,M,Fusagasuga,manuel.g@hotmail.com,https://imgur.com/lNydDFA.jpg,Los mejores helados con recetas caseras para que disfrutes todo el sabor de las paletas y helados. 
+Papas locas,313888899,restaurant,papas,M,Fusagasuga,sofia.m@hotmail.com,https://imgur.com/vWw5yIb.jpg,"¿Te gustan las papás? En papas locas tenemos mil manera de comerlas que te harán volar tu imaginación. Con salsas, tocineta, maiz ... Todo al alcance de tu imaginación. LLAMA YA!"
+Alitas y mas,315262265,restaurant,alitas;papas;comidas rapidas,M,Fusagasuga,manuel.g@hotmail.com,https://imgur.com/F2FUIMM.jpg,Alitas horneadas con las mejores salsas artesanales para que disfrutes todo su sabor
+Pizzahood,320458632,restaurant,pizza;lasgna,M,Fusagasuga,sofia.m@hotmail.com,https://imgur.com/Z0YYJjp.jpg,"Pizzas artesanales con ingredientes personalizables!!! Frutas verduras, piñas, lo malo sería que no las probaras! Contactanos!"
