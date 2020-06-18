@@ -1,19 +1,22 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Parser from 'html-react-parser';
 import Product from './Product';
 import './../styles/store.css';
+import './../styles/card.css';
+
 
 
 const Store = (props) => {
-    const {name, sub_type, phone, web_info, description, products} = props.store;
-    
+    const {name, sub_type, phone, web_info, description, products} = props.store;    
     const [modalShow, setModalShow] = React.useState(false);
     console.log(products);
+    const score_store = Math.random() * (6 - 3) + 3;
+    const stars_fill = '<i class="fa fa-star"></i>';
+    const stars_empty = '<i class="fa fa-star grey"></i>';
     function MyVerticallyCenteredModal(props) {
- 
-         return (
-
+         return (          
           <Modal
             {...props}
             size="lg"
@@ -49,32 +52,63 @@ const Store = (props) => {
 
     
     return (
-
-        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
-            <div className="card border-warning">
-                <h4 className="card-header">{name}</h4>
-                <div className="store_img">
-                  <img src={web_info.logo} alt="" className="card-img-top"/>
-                </div>
-                <div className="card-body">
-                    <h5 className="card-text">Specialized in:<br></br> 
-                        <span className="badge badge-danger">{sub_type}</span>
-                    </h5>
-                <h5 className="card-text">Phone: {phone}</h5>
-                <div className="button_store" >
-                  <Button block variant="primary" onClick={() => setModalShow(true)}>
-                      Show {name}
-                  </Button>
-                </div>
-                <MyVerticallyCenteredModal
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                />
+      <div className="container col-md-4">
+        <div className="card">
+            <div className="card-head">
+                <div className="product-detail">
+                    <h4>{name.toUpperCase()}</h4>
                 </div>
             </div>
+
+            <div class="card-body">
+            <div>
+              <img src={web_info.logo} alt=""
+                     className="product-img"/>
+            </div>
+              <div class="product-desc">
+                <span class="product-title">
+                  <b>Especialistas en:</b>
+                  <span class="badge">
+                    {sub_type}
+                  </span>
+                  <span class="badge">
+                    {sub_type}
+                  </span>
+                  <span class="badge">
+                    {sub_type}
+                  </span>
+                  <span class="badge">
+                    {sub_type}
+                  </span>
+                  <span class="badge">
+                    {sub_type}
+                  </span>
+
+              </span>
+              <span class="product-caption">
+                Saz&oacute;n Stars
+              </span>
+              <span class="product-rating">
+                {Parser(stars_fill.repeat(score_store))}
+                {Parser(stars_empty.repeat(6 - score_store))}
+              </span>
+            </div>
+            <div class="product-properties">
+              <span class="product-size">
+                    <h4>{description}<br></br><br></br></h4>
+              </span>
+              <a class="product-price" href={"https://api.whatsapp.com/send?phone=+57" + phone} target="_blank">
+                      <img border="0"
+                      src="https://icons.iconarchive.com/icons/dtafalonso/android-l/256/WhatsApp-icon.png" 
+                      width="50px" height="50px"></img>
+                </a>
+            </div>
+          </div>
         </div>
+      </div>  
 
 
+      
     )
 }
 

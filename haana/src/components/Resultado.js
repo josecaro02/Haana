@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Store from './Store'
+import Store from './Store';
+import './../styles/resultado.css';
 
 class Resultado extends Component {
 
@@ -14,7 +15,7 @@ class Resultado extends Component {
         console.log(stores);
         return (
             <React.Fragment>
-                <div className="col-12 p-5 row">
+                <div className="col-12 p-5 row resultado">
                     {stores.map(store => (
                           <Store
                             key={store._id}
