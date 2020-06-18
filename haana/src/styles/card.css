@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: #353535;
+  }
+  
+  .container {
+    width: 280px;
+    height: 40hw;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    border-radius: 25px;
+    box-shadow: -11px 11px 1px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-head {
+    position: relative;
+    height: 3hw;
+    background: #ff8800;
+     border-radius: 25px 25px 0 0;
+    
+  } 
+  
+  
+  .card-logo {
+    width: 55px;
+    margin: 20px;
+  }
+  
+  
+  .product-detail {
+    padding: 15px 20px;
+    font-size: 17px;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .product-img {
+    width:200px;
+    height:180px;
+    margin: auto;
+    position: relative;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+  
+  .back-text {
+    display: inline-block;
+    font-size: 125px;
+    font-weight: 900;
+    margin-left: -7px;
+    margin-top: -12px;
+    opacity: 0.1;
+  }
+  
+  .card-body {
+    height: 10hw;
+    background: #fff;
+    border-radius: 0 0 25px 25px;
+  }
+  
+  .product-title {
+    padding: 10px 20px 5px 20px;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  .product-title b {
+    font-weight: 700;
+    letter-spacing: 0px;
+  }
+  
+  .badge {
+    position: relative;
+    font-size: 10px;
+    font-weight: 400;
+    color: #fff;
+    background: #ff7809;
+    padding: 2px 5px;
+    border-radius: 4px;
+    top: -2px;
+    margin-left: 5px;
+  }
+  
+  .product-caption {
+    display: block;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .product-rating {
+    padding: 0 20px;
+    font-size: 11px;
+  }
+  
+  .product-rating i.grey {
+    color: #acacab;
+  }
+  
+  .product-size {
+    min-height:300px;
+  }
+  .product-size h4{
+    font-size: 13px;
+    padding: 0 21px;
+    min-height: 150px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+  }
+    
+  .product-color h4 {
+    font-size: 11px;
+    padding: 0 21px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  
+  .product-price {
+    position: relative;
+    background: #11e95b;
+    margin-top:-10px;
+    margin-left: 20px;
+    padding: 0px 7px;
+    text-align: center;
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 400;
+    color: #fff;
+    border-radius: 7px;
+    box-shadow: -10px 20px 15px -10px rgba(17, 233, 91, 0.3);
+  }
+  
+.phone {
+  display: flex;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 700;
+
+  margin-bottom: 10px;
+  height: 35px;
+}
+

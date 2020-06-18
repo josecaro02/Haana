@@ -27,8 +27,8 @@ class Home extends Component {
       <div className="app container-fluid" id="principal">
         <div>
           <div className="main-info">
-            <h1>Welcome to Haana</h1>
-            <h4>Hanna helps you to find all the stores's information in your city</h4>
+            <h1>Bienvenido a Haana</h1>
+            <h4>Hanna te ayuda a encontrar toda la informaci&oacute; de los restaurantes de tu ciudad</h4>
           </div>
           <div className="jumbotron">
             <Buscador

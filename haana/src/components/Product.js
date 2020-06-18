@@ -13,8 +13,8 @@ const Product = (props) => {
                   <img src={img_link} alt=""/>
             </div>
             <div className="card-body">
-                <p>Description:<br></br>{description}</p>
-                <h4>Value: {value}</h4>
+                <p>Descripci&oacute;n:<br></br>{description}</p>
+                <h4>Valor: {value}</h4>
             </div>
         </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from "./../../public/media/logo.png";
+import logo from "./../media/logo.png";
 import './../styles/home.css';
 
 class Buscador extends Component {
@@ -24,11 +24,11 @@ class Buscador extends Component {
                     </div>    
                     <div className="form-group col-md-8 mt-0 mt-md-4">
                         <input ref={this.searchRef} type="text" className="form-control form-control-lg"
-                            placeholder="Search restaurants in your city"/>
+                            placeholder="Ingresa el nombre de tu ciudad"/>
                     </div>
                     <div className="form-group col-md-2 mt-0 mt-md-4">
                         <input type="submit" className="btn btn-lg btn-warning btn-block"
-                            value="Search"/>
+                            value="Buscar"/>
                     </div>
                 </div>
             </form>
