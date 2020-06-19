@@ -11,22 +11,20 @@ class Resultado extends Component {
         const stores = this.props.stores;
         if (stores.length === 0) return null;
 
-        console.log(stores);
-        return (
+         return (
             <React.Fragment>
                 <div className="col-12 p-5 row resultado">
                     {stores.map(store => (
                           <Store
                             key={store._id}
                             store={store}
-                            josevar="hola"
                           />     
                     ))}
                 </div>
             </React.Fragment>
         )
     }
-    componentWillUpdate() {
+    componentDidUpdate() {
         this.scroll();
     }
   
