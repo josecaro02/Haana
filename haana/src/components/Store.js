@@ -9,9 +9,8 @@ import './../styles/card.css';
 
 
 const Store = (props) => {
-    const {name, sub_type, phone, web_info, description, products} = props.store;    
+    const {name, tags, phone, web_info, description, products} = props.store;    
     const [modalShow, setModalShow] = React.useState(false);
-    console.log(products);
     const score_store = Math.random() * (6 - 3) + 3;
     const stars_fill = '<i class="fa fa-star"></i>';
     const stars_empty = '<i class="fa fa-star grey"></i>';
@@ -44,7 +43,7 @@ const Store = (props) => {
               </React.Fragment>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={props.onHide}>Close</Button>
+              <Button onClick={props.onHide}>Cerrar</Button>
             </Modal.Footer>
           </Modal>
         );
@@ -60,33 +59,34 @@ const Store = (props) => {
                 </div>
             </div>
 
-            <div class="card-body">
+            <div className="card-body">
             <div>
               <img src={web_info.logo} alt=""
                      className="product-img"/>
             </div>
-              <div class="product-desc">
-              <span class="product-caption">
+              <div className="product-desc">
+              <span className="product-caption">
                 Calificaci&oacute;n
-                <span class="product-rating">
+                <span className="product-rating">
                 {Parser(stars_fill.repeat(score_store))}
                 {Parser(stars_empty.repeat(6 - score_store))}
               </span>
               </span>
-                  <span class="product-title">
+                  <span className="product-title">
                   <b>Especialistas en:</b>
-                  <span class="badge">
-                    {sub_type}
-                  </span>
+                  {tags.map(function(tag, i){
+                    return <span className="badge" key={i}>{tag}</span>
+                      })
+                    }
               </span>
             </div>
-            <div class="product-properties">
-              <span class="product-size">
+            <div className="product-properties">
+              <span className="product-size">
                     <h4>{description}<br></br><br></br></h4>
               </span>
               <div className="phone">
                   <span>Telefono: {phone} </span>
-                  <a class="product-price" href={"https://api.whatsapp.com/send?phone=+57" + phone} target="_blank">
+                  <a className="product-price" href={"https://api.whatsapp.com/send?phone=+57" + phone} target="_blank">
                         <img border="0" alt=""
                         src="https://icons.iconarchive.com/icons/dtafalonso/android-l/256/WhatsApp-icon.png" 
                         width="30px" height="30px"></img>

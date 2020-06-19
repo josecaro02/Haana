@@ -28,7 +28,7 @@ class Home extends Component {
         <div>
           <div className="main-info">
             <h1>Bienvenido a Haana</h1>
-            <h4>Hanna te ayuda a encontrar toda la informaci&oacute; de los restaurantes de tu ciudad</h4>
+            <h4>Haana te ayuda a encontrar toda la informaci&oacute;n de los restaurantes de tu ciudad</h4>
           </div>
           <div className="jumbotron">
             <Buscador
