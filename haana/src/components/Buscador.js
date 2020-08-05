@@ -24,7 +24,7 @@ class Buscador extends Component {
                     </div>    
                     <div className="form-group col-md-8 mt-0 mt-md-4">
                         <input ref={this.searchRef} type="text" className="form-control form-control-lg"
-                            placeholder="Ingresa el nombre de tu ciudad"/>
+                            placeholder="Ingresa el nombre de tu ciudad Ej: Duitama"/>
                     </div>
                     <div className="form-group col-md-2 mt-0 mt-md-4">
                         <input type="submit" className="btn btn-lg btn-warning btn-block"
