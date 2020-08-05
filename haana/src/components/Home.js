@@ -10,7 +10,7 @@ class Home extends Component {
   }
 
   getApi = () => {
-    const url = `http://54.157.184.202/api/location/${this.state.city}`;
+    const url = `https://haana.tech/api/location/${this.state.city}`;
     
     fetch(url).then(respuesta => respuesta.json() ).then(resultado => this.setState({stores : resultado}))
   }
